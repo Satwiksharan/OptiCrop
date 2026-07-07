@@ -35,8 +35,7 @@ The application processes data through the following pipeline:
    The Flask application (`app.py`) captures the form data sent via a `POST` request.
 
 3. **Data Pre-processing & Inference (ML Pipeline):** 
-   The backend inputs are structured into a NumPy array or Pandas DataFrame, matched against the pre-trained Scikit-learn machine learning model, and processed to output the highest-probability crop recommendation.
+   The backend inputs are structured into an array, matched against the pre-trained machine learning model, and processed to output the highest-probability crop recommendation.
 
 4. **Results Delivery (Frontend):** 
-   The server renders the `result.html` page, dynamically displaying the optimized crop recommendation and suitability insights back to the user.
-
+   The server renders the results page, dynamically displaying the optimized crop recommendation back to the user.
