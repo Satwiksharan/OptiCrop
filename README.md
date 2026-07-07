@@ -39,3 +39,14 @@ The application processes data through the following pipeline:
 
 4. **Results Delivery (Frontend):** 
    The server renders the results page, dynamically displaying the optimized crop recommendation back to the user.
+
+## 📸 Website Preview
+
+### Home Page
+![Home](assets/home.png)
+
+### Predictor
+![Dashboard](assets/predictor.png)
+
+### About
+![Mobile](assets/about.png)
