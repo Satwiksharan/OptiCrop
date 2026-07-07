@@ -46,7 +46,7 @@ The application processes data through the following pipeline:
 ![Home](assets/home.png)
 
 ### Predictor
-![Dashboard](assets/predictor.png)
+![Predictor](assets/predictor.png)
 
 ### About
-![Mobile](assets/about.png)
+![About](assets/about.png)
