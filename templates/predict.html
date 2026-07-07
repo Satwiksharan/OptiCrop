@@ -2,19 +2,206 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OptiCrop - Find Your Crop</title>
+    <style>
+        :root {
+            --navy: #2c3e50;
+            --green: #27ae60;
+            --green-soft: #2ecc71;
+            --bg: #f8f9fa;
+            --text: #2f3e46;
+            --muted: #6c757d;
+            --white: #ffffff;
+            --border: #e9ecef;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #edf7f0 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(44, 62, 80, 0.97);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .brand {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 1.2rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green-soft);
+        }
+
+        .page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 560px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 18px 40px rgba(44, 62, 80, 0.12);
+            border: 1px solid var(--border);
+        }
+
+        .form-card h2 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.7rem;
+        }
+
+        .form-card p {
+            color: var(--muted);
+            margin-bottom: 1.4rem;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.96rem;
+            color: var(--text);
+            background: #fcfdfd;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--green-soft);
+            box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15);
+        }
+
+        .submit-btn {
+            margin-top: 1.2rem;
+            width: 100%;
+            border: none;
+            background: linear-gradient(135deg, var(--green-soft), var(--green));
+            color: var(--white);
+            padding: 0.95rem 1rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.22);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 720px) {
+            .navbar {
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: 1rem;
+            }
+
+            .nav-links a {
+                margin: 0 0.6rem;
+            }
+
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Crop Prediction Form</h2>
-    <form action="/predict" method="POST">
-        <label>Nitrogen (N):</label><input type="text" name="N"><br><br>
-        <label>Phosphorous (P):</label><input type="text" name="P"><br><br>
-        <label>Potassium (K):</label><input type="text" name="K"><br><br>
-        <label>Temperature:</label><input type="text" name="temperature"><br><br>
-        <label>Humidity:</label><input type="text" name="humidity"><br><br>
-        <label>pH:</label><input type="text" name="ph"><br><br>
-        <label>Rainfall:</label><input type="text" name="rainfall"><br><br>
-        <input type="submit" value="Predict">
-    </form>
+    <nav class="navbar">
+        <a class="brand" href="/home">🌾 OptiCrop</a>
+        <div class="nav-links">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a class="active" href="/findyourcrop">Find Your Crop</a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="form-card">
+            <h2>Predict the ideal crop</h2>
+            <p>Enter the soil and climate details below to receive a smart crop recommendation.</p>
+            <form action="/predict" method="POST">
+                <div class="field-grid">
+                    <div class="field">
+                        <label for="N">Nitrogen (N)</label>
+                        <input id="N" type="number" step="any" name="N" placeholder="e.g. 85">
+                    </div>
+                    <div class="field">
+                        <label for="P">Phosphorous (P)</label>
+                        <input id="P" type="number" step="any" name="P" placeholder="e.g. 58">
+                    </div>
+                    <div class="field">
+                        <label for="K">Potassium (K)</label>
+                        <input id="K" type="number" step="any" name="K" placeholder="e.g. 42">
+                    </div>
+                    <div class="field">
+                        <label for="temperature">Temperature</label>
+                        <input id="temperature" type="number" step="any" name="temperature" placeholder="e.g. 24">
+                    </div>
+                    <div class="field">
+                        <label for="humidity">Humidity</label>
+                        <input id="humidity" type="number" step="any" name="humidity" placeholder="e.g. 82">
+                    </div>
+                    <div class="field">
+                        <label for="ph">pH</label>
+                        <input id="ph" type="number" step="any" name="ph" placeholder="e.g. 6.5">
+                    </div>
+                    <div class="field">
+                        <label for="rainfall">Rainfall</label>
+                        <input id="rainfall" type="number" step="any" name="rainfall" placeholder="e.g. 200">
+                    </div>
+                </div>
+                <button class="submit-btn" type="submit">Predict Crop</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
