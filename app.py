@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
+import os
 
 # Initialize the Flask application
 app = Flask(__name__)
 
-# Load the trained machine learning model from the saved .pkl file
-with open('model.pkl', 'rb') as model_file:
+# PERMANENT FIX: Dynamically find the absolute path of the directory containing app.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'model.pkl')
+
+# Load the trained machine learning model using the absolute path
+with open(MODEL_PATH, 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Route for the Home page
@@ -44,7 +49,7 @@ def predict():
         # Pass values to the trained machine learning model using the predict() function
         prediction = model.predict(input_features)
         
-        # Display the result to the user (can render a template or raw text)
+        # Display the result to the user
         return f"<h2>The recommended crop for the given climatic conditions is: <span style='color: green;'>{prediction[0]}</span></h2><br><a href='/findyourcrop'>Go Back</a>"
 
 # Main function to run the application on the local development server
