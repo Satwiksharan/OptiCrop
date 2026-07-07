@@ -21,3 +21,22 @@ OptiCrop is an advanced, data-driven software engine designed to maximize crop y
 *   **Data Analysis & Machine Learning:** NumPy, Pandas, Scikit-learn, SciPy
 *   **Data Visualization:** Matplotlib, Seaborn
 *   **Frontend:** HTML5, CSS3
+  
+---
+
+## 🔄 Project Flow & Architecture
+
+The application processes data through the following pipeline:
+
+1. **User Input Interface (Frontend):** 
+   The farmer inputs soil parameters (N, P, K, pH) and environmental conditions (temperature, humidity, rainfall) via an HTML5 form (`index.html`).
+   
+2. **Web Server Handling (Backend):** 
+   The Flask application (`app.py`) captures the form data sent via a `POST` request.
+
+3. **Data Pre-processing & Inference (ML Pipeline):** 
+   The backend inputs are structured into a NumPy array or Pandas DataFrame, matched against the pre-trained Scikit-learn machine learning model, and processed to output the highest-probability crop recommendation.
+
+4. **Results Delivery (Frontend):** 
+   The server renders the `result.html` page, dynamically displaying the optimized crop recommendation and suitability insights back to the user.
+
