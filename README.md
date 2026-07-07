@@ -43,10 +43,10 @@ The application processes data through the following pipeline:
 ## 📸 Website Preview
 
 ### Home Page
-![Home](asset/home.png)
+![Home](docs/website-screenshots/home.png)
 
 ### Predictor
-![Predictor](asset/predictor.png)
+![Predictor](docs/website-screenshots/predictor.png)
 
 ### About
-![About](asset/about.png)
+![About](docs/website-screenshots/about.png)
